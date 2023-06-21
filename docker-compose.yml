@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:12
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 9999:5432
+    networks:
+      - network
+    restart: always
+    volumes:
+      - ./script:/docker-entrypoint-initdb.d/
+
+networks:
+  network:
+    driver: bridge

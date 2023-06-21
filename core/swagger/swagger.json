@@ -1,0 +1,85 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Bộ API của sàn thương mại điện tử",
+        "title": "Swagger E-Commerce HAPO GoLang API",
+        "contact": {
+            "name": "Nguyễn Văn Kim Hải",
+            "url": "https://mafc.com.vn/",
+            "email": "kimhai.ngvan@gmail.com"
+        },
+        "license": {
+            "name": "HAPO"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "paths": {
+        "/api/CreateCategory": {
+            "post": {
+                "description": "Tạo danh mục (Category) từ thông tin client gửi lên",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create Category",
+                "parameters": [
+                    {
+                        "description": "Request CreateCategory",
+                        "name": "CreateCategory",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/category.CreateCategoryRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/httpx.CreatedResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "category.CreateCategoryRequest": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "description": "ID tự gen ra ở server",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Tên của danh mục, bắt buộc phải có",
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "httpx.CreatedResponse": {
+            "type": "object",
+            "properties": {
+                "created": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}

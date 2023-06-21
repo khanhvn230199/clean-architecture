@@ -1,0 +1,56 @@
+definitions:
+  category.CreateCategoryRequest:
+    properties:
+      description:
+        type: string
+      id:
+        description: ID tự gen ra ở server
+        type: string
+      name:
+        description: Tên của danh mục, bắt buộc phải có
+        type: string
+      url:
+        type: string
+    required:
+    - name
+    type: object
+  httpx.CreatedResponse:
+    properties:
+      created:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: kimhai.ngvan@gmail.com
+    name: Nguyễn Văn Kim Hải
+    url: https://mafc.com.vn/
+  description: Bộ API của sàn thương mại điện tử
+  license:
+    name: HAPO
+  title: Swagger E-Commerce HAPO GoLang API
+  version: "1.0"
+paths:
+  /api/CreateCategory:
+    post:
+      consumes:
+      - internal/json
+      description: Tạo danh mục (Category) từ thông tin client gửi lên
+      parameters:
+      - description: Request CreateCategory
+        in: body
+        name: CreateCategory
+        required: true
+        schema:
+          $ref: '#/definitions/category.CreateCategoryRequest'
+      produces:
+      - internal/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httpx.CreatedResponse'
+      summary: Create Category
+      tags:
+      - Category
+swagger: "2.0"
